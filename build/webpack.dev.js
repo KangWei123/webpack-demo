@@ -1,5 +1,5 @@
 // build/webpack.dev.js
-
+const pxtorem = require("postcss-pxtorem")
 // merge 用于合并基本配置webpack.config
 const { merge } = require('webpack-merge')
 // 基本配置webpack.config
@@ -14,7 +14,7 @@ module.exports = merge(webpackConfig, {
     module: {
         rules: [
             {
-                test: /\.(scss|sass)$/,
+                test: /\.(scss|sass|css)$/,
                 use: [
                     // 我们需要打包的css文件在经过sass-loader的翻译，css-loader的合并之后，
                     // style-loader的作用就是把合并后的css文件挂载到页面的head中来渲染出页面的样式
@@ -30,6 +30,19 @@ module.exports = merge(webpackConfig, {
                             // 将importLoaders设置为2，那么 a.scss和b.scss就会被postcss-loader和sass-loader给处理
                         }
                     },
+                    {
+                        loader: 'postcss-loader', //放在这'style-loader','css-loader'后面，sass-loader前面
+                        options: {
+                          ident: 'postcss', //当引入外部的依赖包作为组件配置项时需要定义一个唯一的标识符，推荐这样写
+                          sourceMap: true,
+                          plugins: [
+                            pxtorem({
+                              rootValue: 16, //表示根元素html的fontSize值,也可以是100,获取任意其他值
+                              propList: ['*'], //设置px转换成rem的属性值，*表示所有属性的px转换为rem
+                            }),
+                          ],
+                        },
+                      },
                     // 当我们打包sass语法编写的css文件时，sass-loader的作用就是将该css文件翻译成纯css语法文件，以便后续打包处理，
                     // 需要注意的是，在我们需要使用sass-loader时，在安装sass-loader时还需要安装node-sass。
                     {

@@ -1,4 +1,4 @@
-
+const chalk = require('chalk')
 // merge 用于合并基本配置webpack.config
 const { merge } = require('webpack-merge')
 // webpack
@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 //每次打包之前先清空build
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+console.log(chalk.bgGreen(`当前环境:${'prod'} `));
 module.exports = merge(webpackConfig, {
     // 模式
     mode: 'production',
@@ -39,7 +40,7 @@ module.exports = merge(webpackConfig, {
     module: {
         rules: [
             {
-                test: /\.(scss|sass)$/,
+                test: /\.(scss|sass|css)$/,
                 // 用于提取css到文件中
                 use: [
                     {
