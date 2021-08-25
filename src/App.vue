@@ -15,12 +15,16 @@
         <li v-for="(item, index) in icons" :key="index"><img :src="item" alt="" /><span>多多超市</span></li>
       </ul>
     </div>
+    <div class="container">
+      22
+      <router-view></router-view>
+    </div>
     <div class="footer">
-      <van-tabbar v-model="active" active-color="#ee0a24" inactive-color="#000">
+      <van-tabbar v-model="active" @change="onChange" active-color="#ee0a24" inactive-color="#000">
         <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-        <van-tabbar-item icon="search">标签</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+        <van-tabbar-item icon="search">分类</van-tabbar-item>
+        <van-tabbar-item icon="friends-o">购物车</van-tabbar-item>
+        <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
       </van-tabbar>
     </div>
   </div>
@@ -64,12 +68,13 @@ export default {
     //   console.log(aa)
   },
   methods: {
-    afterRead(file) {
-      // 此时可以自行将文件上传至服务器
-      console.log(file);
-    },
     onChange(index) {
-      Notify({ type: 'primary', message: index });
+      console.log(111, index);
+      if(index === 0) this.$router.push({path:'/foo'});
+      if(index === 1) this.$router.push({path:'/bar'});
+      if(index === 2) this.$router.push({path:'/car'});
+      if(index === 3) this.$router.push({path:'/my'});
+      // Notify({ type: 'primary', message: index });
     },
   },
 };
@@ -114,5 +119,12 @@ export default {
       }
     }
   }
+}
+.container{
+  margin-top: 50px;
+  box-sizing: border-box;
+  border: 1px red solid;
+  width: 100%;
+  height: 200px;
 }
 </style>
