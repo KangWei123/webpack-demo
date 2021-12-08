@@ -30,8 +30,8 @@
   </div>
 </template>
 <script>
-import { Notify } from 'vant';
 import Vue from 'vue';
+import {mapState,mapGetters,mapMutations ,mapActions} from 'vuex';
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import { Lazyload } from 'vant';
@@ -63,11 +63,24 @@ export default {
       ],
     };
   },
-  mounted() {
-    console.log('23432422232422');
-    //   console.log(aa)
+   async mounted() {
+    // console.log('olderAge',this.aliasAge);
+     await this.newsetAge(10)
+    // console.log('newAge',this.aliasAge);
+    // console.log('11',this.aliasName);
+    // this.$store.commit('setName','传参')
+    // this.fn('fn传参')
+    // console.log('22',this.aliasName);
+
+  },
+  computed:{
+    ...mapGetters({newGetMessage:'getMessage'}),
+    ...mapState({aliasName:'name'}),
+    ...mapState({aliasAge:'age'}),
   },
   methods: {
+    ...mapActions({newsetAge:'setAge'}),
+    ...mapMutations({fn:'setName'}),
     onChange(index) {
       console.log(111, index);
       if(index === 0) this.$router.push({path:'/foo'});

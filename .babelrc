@@ -1,0 +1,4 @@
+// 将 es6+ 转换成 es5
+{
+  "plugins": [["@babel/plugin-transform-runtime"]]
+}

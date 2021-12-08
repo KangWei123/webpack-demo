@@ -3,7 +3,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import routes from './routes/index';
 import VueRouter from 'vue-router';
+import store from './store'
 Vue.use(VueRouter)
+
 //捕获路由冗余错误
 const originalPush = VueRouter.prototype.push
    VueRouter.prototype.push = function push(location) {
@@ -22,5 +24,6 @@ const router = new VueRouter({
 })();
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app');
