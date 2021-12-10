@@ -36,10 +36,10 @@ const actions = {
   setAge(content,params) {
     return new Promise(resolve => {
       setTimeout(() => {
-        console.log('content',content)
-        console.log('content.state.age',content.state.age)
+        console.log('content',content);
+        console.log('content.state.age',content.state.age);
         content.commit('setAge',params);
-        resolve()
+        resolve();
       }, 1000);
     });
   }

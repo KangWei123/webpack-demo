@@ -19,10 +19,12 @@
       22
       <router-view></router-view>
     </div>
+
     <div class="footer">
       <van-tabbar v-model="active" @change="onChange" active-color="#ee0a24" inactive-color="#000">
         <van-tabbar-item icon="home-o">首页</van-tabbar-item>
         <van-tabbar-item icon="search">分类</van-tabbar-item>
+
         <van-tabbar-item icon="friends-o">购物车</van-tabbar-item>
         <van-tabbar-item icon="setting-o">我的</van-tabbar-item>
       </van-tabbar>
@@ -31,7 +33,7 @@
 </template>
 <script>
 import Vue from 'vue';
-import {mapState,mapGetters,mapMutations ,mapActions} from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import { Lazyload } from 'vant';
@@ -41,7 +43,7 @@ export default {
   name: 'App',
   data() {
     return {
-      num: 10,
+      num: '10',
       active: 0,
       images: [
         'https://m.360buyimg.com/mobilecms/s700x280_jfs/t1/181068/13/16622/771845/6102a71aE15dbe36e/c7f4953bb30e1efe.png!cr_1053x420_4_0!q70.jpg.dpg',
@@ -63,31 +65,28 @@ export default {
       ],
     };
   },
-   async mounted() {
+  async mounted() {
     // console.log('olderAge',this.aliasAge);
-     await this.newsetAge(10)
+    await this.newsetAge(10);
     // console.log('newAge',this.aliasAge);
     // console.log('11',this.aliasName);
     // this.$store.commit('setName','传参')
     // this.fn('fn传参')
     // console.log('22',this.aliasName);
-
   },
-  computed:{
-    ...mapGetters({newGetMessage:'getMessage'}),
-    ...mapState({aliasName:'name'}),
-    ...mapState({aliasAge:'age'}),
+  computed: {
+    ...mapGetters({ newGetMessage: 'getMessage' }),
+    ...mapState({ aliasName: 'name' }),
+    ...mapState({ aliasAge: 'age' }),
   },
   methods: {
-    ...mapActions({newsetAge:'setAge'}),
-    ...mapMutations({fn:'setName'}),
+    ...mapActions({ newsetAge: 'setAge' }),
+    ...mapMutations({ fn: 'setName' }),
     onChange(index) {
-      console.log(111, index);
-      if(index === 0) this.$router.push({path:'/foo'});
-      if(index === 1) this.$router.push({path:'/bar'});
-      if(index === 2) this.$router.push({path:'/car'});
-      if(index === 3) this.$router.push({path:'/my'});
-      // Notify({ type: 'primary', message: index });
+      if (index === 0) this.$router.push({ path: '/foo' });
+      if (index === 1) this.$router.push({ path: '/bar' });
+      if (index === 2) this.$router.push({ path: '/car' });
+      if (index === 3) this.$router.push({ path: '/my' });
     },
   },
 };
@@ -133,7 +132,7 @@ export default {
     }
   }
 }
-.container{
+.container {
   margin-top: 50px;
   box-sizing: border-box;
   border: 1px red solid;

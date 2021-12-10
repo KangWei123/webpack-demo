@@ -3,14 +3,14 @@ import Vue from 'vue';
 import App from './App.vue';
 import routes from './routes/index';
 import VueRouter from 'vue-router';
-import store from './store'
-Vue.use(VueRouter)
+import store from './store';
+Vue.use(VueRouter);
 
 //捕获路由冗余错误
-const originalPush = VueRouter.prototype.push
+const originalPush = VueRouter.prototype.push;
    VueRouter.prototype.push = function push(location) {
-   return originalPush.call(this, location).catch(err => err)
-}
+   return originalPush.call(this, location).catch(err => err);
+};
 const router = new VueRouter({
   routes
 });

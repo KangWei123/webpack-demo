@@ -1,7 +1,7 @@
 /**
  * 基础枚举值定义示例
  * 值固定用 "value" 属性名，名固定用 "label" 属性名
- * 
+ *
   const enumValue = {
     ENABLED: {
       value: 0,

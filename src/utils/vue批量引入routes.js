@@ -1,5 +1,5 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 // vue批量引入routes
 Vue.use(VueRouter);
 
@@ -28,6 +28,6 @@ modules.keys().forEach(name => {
 });
 
 export default new VueRouter({
-  mode: "hash",
+  mode: 'hash',
   routes,
 });
