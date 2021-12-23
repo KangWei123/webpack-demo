@@ -14,13 +14,14 @@ module.exports = merge(webpackConfig, {
     module: {
         rules: [
             {
-                test: /\.(scss|sass|css)$/,
+                test: /\.(scss|sass|css|less)$/,
                 use: [
                     // 我们需要打包的css文件在经过sass-loader的翻译，css-loader的合并之后，
                     // style-loader的作用就是把合并后的css文件挂载到页面的head中来渲染出页面的样式
                     {
                         loader: 'style-loader'
                     },
+                    
                     //   我们的css打包文件中可能会引入其它的css文件，而css-loader的作用就相当于把这些相互依赖的css文件合并成一个css文件。
                     {
                         loader: 'css-loader',
