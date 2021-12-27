@@ -3,7 +3,7 @@
 </footer></header></main></nav></time></dialog></progress>
 ```
 #### BFC
-> BFC(块级格式换上下文，用于清楚浮动，防止margin重叠)
+> BFC(块级格式换上下文，用于清除浮动，防止margin重叠)
 ### 事件委托
 > 事件委托指的是不在事件发生地（直接dom）上设置监听函数， 
 而是在其父元素上设置监听函数，通过事件冒泡，父元素可以监听到子元素上的事件触发，通过判定事件发生元素的DOM类型，来做出不同的响应。
@@ -77,10 +77,15 @@ let user = new Proxy(新对象，{
     }
 })
 ```
+### 　HTTPS和HTTP的区别
+1.https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。
+2.http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。
+3.http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
+4.http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
 ### HTTP状态码
 - 301 永久重定向
-- 307 临时重定向
 - 304 资源缓存（cache-control）
+- 307 临时重定向
 - 401 没有访问权限
 - 404 资源不存在（地址错误）
 - 500 服务器内部错误
@@ -121,14 +126,14 @@ xhr.onreadstatechange=(()=>{
 - 由于浏览器的同源策略，要求协议域名端口号三者相同
 - 地址=协议+域名+端口号+请求路径+参数
 - Ajax请求，浏览器要求当前网页和server必须同源（安全），否则讲抛出跨域错误
-- </img></link></script>标签不受同源策略现在
+- </img></link></script>标签不受同源策略控制
 > 解决方案：
 1. jsonp：利用</script>标签实现get请求
 2. CORS：利用白名单特性，服务端设置响应头Access-Control-Allow-Origin字段，实现跨域。
 3. 代理：正向代理（devServer-proxy）,反向代理（Nginx）
 ### 用户输入URL到渲染页面的整个过程
-> 根据URL查询DNS,查找服务器，简历TCP链接，发送请求，服务器响应。
-### VUE上面周期
+> 根据URL查询DNS,查找服务器，建立TCP链接，发送请求，服务器响应。
+### VUE生命周期
 - beforeCreate() 在实例化初始后调用，此时data和methods还没有初始化完成，通过this访问不到data里的数据，也访问不到computed和methods。
 - created() 此时data和methods都已经初始化完成，可以通过this访问到data里的数据和methods里的方法。
 - beforeMount() 此时模板已经在内存编译，但还无法通过ref访问dom对象
@@ -235,9 +240,9 @@ key的作用主要是为了高效的更新虚拟DOM
 3. code split 代码分割 / lazy loading 懒加载
 4. tree shaking( 摇树)
 ### webpack如何判断环境的？
-> 利用node.js的process全局对象，提供信息，命令行启动不同命令执行不同配置文件，修改process.env.NODE_ENV = devlopment/production
+> 利用node.js的process全局对象，提供变量空间，命令行启动不同命令执行不同配置文件，修改process.env.NODE_ENV = devlopment/production
 
-> 或者利用webpack的DefinePlugin插件定义可全局访问的环境变量，命令行启动不同命令执行不同配置文件，值不同devlopment/production ，从而判断当前环境
+> 或者利用webpack的DefinePlugin插件定义可全局访问的环境变量，命令行启动不同命令执行不同配置文件，值不同devlopment/production ，从而判断当前环境  
 
 
 
