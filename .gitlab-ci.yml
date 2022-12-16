@@ -1,0 +1,56 @@
+# 该ci_pipeline适合的场景
+stages:
+  # 部署场景
+  - build
+#  - analyze
+  - deploy
+
+code_build:
+  # 构建
+  stage: build
+  tags:
+    # 对应Runner设置的构建标记
+    - dev-build
+  script:
+    # 查看变量
+    #- set
+    # 打印信息
+    - echo "build ....."
+    # 执行对应的构建脚本
+    - bash ./ci_script/build-scripts/gobuild.sh
+  artifacts:
+    # Runner对应的容器名称
+    name: "publish"
+    untracked: false
+    paths:
+      - publish/
+  variables:
+    # 在job级别上定义的变量(在git服务定义变量，标识自动更新信息)
+    GIT_STRATEGY: fetch
+  only:
+    # 指定执行分支，web表示手动触发构建(此时类似于Jekins，避免push代码自动部署)
+    - web
+
+
+#sonar_analyze:
+#    stage: analyze
+#    tags:
+#        - dev-analyze
+#    script:
+#        - bash ./sonar_analyze.sh
+#    only:
+#        - web
+
+pkg_deploy:
+  stage: deploy
+  tags:
+    - dev-deploy
+  script:
+    - bash ./ci_script/deploy-scripts/godeploy.sh
+  dependencies:
+    # 依赖于构建场景基础上
+    - code_build
+  variables:
+    GIT_STRATEGY: fetch
+  only:
+    - web
